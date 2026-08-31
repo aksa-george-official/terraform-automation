@@ -7,4 +7,5 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 .terraform.lock.hcl
+**/backend,tf
 EOF
