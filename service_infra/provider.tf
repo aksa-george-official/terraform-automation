@@ -18,7 +18,7 @@ data "terraform_remote_state" "aksa-base-infra" {
 
   config = {
     hostname     = "spacelift.io" # For US instance, use us.spacelift.io 
-    organization = "spacecorp"    # 
+    organization = "aksa-george-official"    # 
 
     workspaces = {
       name = "aksa-base-infra"       # 

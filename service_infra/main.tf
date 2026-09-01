@@ -23,8 +23,8 @@ module "target_group" {
       path              = "/notifications"
     }
   }
-  vpc_id              = var.vpc_id
-  listener_https_arn = var.listener_https_arn
+  vpc_id              = data.terraform_remote_state.aksa-base-infra.outputs.vpc_id
+  listener_https_arn = data.terraform_remote_state.aksa-base-infra.outputs.listener_https_arn
 }
 
 module "task_definition" {
@@ -34,14 +34,14 @@ module "task_definition" {
   AWS_SECRET_ACCESS_KEY = ""
   ecs_task_role       = module.iam_role.task_role_arn
   region = var.region
-  user_repository_url = var.user_repository_url
-  order_repository_url = var.order_repository_url
-  notification_repository_url = var.notification_repository_url
-  POSTGRES_USER = var.POSTGRES_USER
-  POSTGRES_HOST = var.POSTGRES_HOST
-  master_user_secret_arn = var.master_user_secret_arn
-  AWS_S3_BUCKET = var.AWS_S3_BUCKET
-  AWS_QUEUE_URL = var.AWS_QUEUE_URL
+  user_repository_url = data.terraform_remote_state.aksa-base-infra.outputs.user_repository_url
+  order_repository_url = data.terraform_remote_state.aksa-base-infra.outputs.order_repository_url
+  notification_repository_url = data.terraform_remote_state.aksa-base-infra.outputs.notification_repository_url
+  POSTGRES_USER = data.terraform_remote_state.aksa-base-infra.outputs.POSTGRES_USER
+  POSTGRES_HOST = data.terraform_remote_state.aksa-base-infra.outputs.POSTGRES_HOST
+  master_user_secret_arn = data.terraform_remote_state.aksa-base-infra.outputs.master_user_secret_arn
+  AWS_S3_BUCKET = data.terraform_remote_state.aksa-base-infra.outputs.AWS_S3_BUCKET
+  AWS_QUEUE_URL = data.terraform_remote_state.aksa-base-infra.outputs.AWS_QUEUE_URL
   
 }
 
@@ -62,9 +62,9 @@ module "ecs_cluster"{
     order_task_defintion = module.task_definition.order_task_defintion
     notification_target_group_arn = module.target_group.notification_target_group_arn
     notification_task_defintion = module.task_definition.notification_task_defintion
-    private_subnet_id = var.private_subnet_id
-    User_Security_Group = var.User_Security_Group
-    Notification_Security_Group = var.Notification_Security_Group
-    Order_Security_Group = var.Order_Security_Group
+    private_subnet_id = data.terraform_remote_state.aksa-base-infra.outputs.private_subnet_id
+    User_Security_Group = data.terraform_remote_state.aksa-base-infra.outputs.User_Security_Group
+    Notification_Security_Group = data.terraform_remote_state.aksa-base-infra.outputs.Notification_Security_Group
+    Order_Security_Group = data.terraform_remote_state.aksa-base-infra.outputsr.Order_Security_Group
 
 }
