@@ -16,8 +16,8 @@
 data "terraform_remote_state" "source_stack" {
   backend = "remote"
   config = {
-    hostname = "spacelift.io"
-    organization = "root"
+    hostname = "aksa-george-official.app.spacelift.io"
+    organization = "aksa-george-official.app"
     workspaces = {
       name = "aksa-base-infra"
       }
