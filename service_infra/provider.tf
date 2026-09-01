@@ -11,17 +11,3 @@ provider "aws" {
   region = var.region
 }
 
-
-
-data "terraform_remote_state" "source_stack" {
-  backend = "remote"
-  config = {
-    hostname = "spacelift.io"
-    organization = "aksa-george-official"
-    workspaces = {
-      name = "aksa-base-infra"
-      }
-      }
-}
-
-# Example: Reference an output value from the source stack
