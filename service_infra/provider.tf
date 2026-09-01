@@ -19,7 +19,7 @@ data "terraform_remote_state" "source_stack" {
     hostname = "spacelift.io"
     organization = "aksa-george-official"
     workspaces = {
-      name = "root"
+      name = "aksa-base-infra"
       }
       }
 }
