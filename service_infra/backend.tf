@@ -11,7 +11,7 @@ data "terraform_remote_state" "aksa-base-infra" {
 
   config = {
     bucket = "aksa-terraform-backend"
-    key    = "base-infra.tfstate"
+    key    = "backend/base-infra.tfstate"
     region = var.region
  }
 }
