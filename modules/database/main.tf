@@ -7,6 +7,10 @@ resource "aws_db_subnet_group" "this" {
   subnet_ids = var.private_subnet_id
 }
 
+resource "aws_kms_key" "this" {
+  description = "KMS key for AKSA RDS"
+}
+
 resource "aws_db_instance" "this" {
   identifier = "${local.tag_prefix}-db"
   allocated_storage    = 10
@@ -16,6 +20,7 @@ resource "aws_db_instance" "this" {
   instance_class       = "db.t3.micro"
   port = 5432
   username = var.username
+  storage_encrypted = true
   manage_master_user_password = true
   parameter_group_name = data.aws_db_parameter_group.this.name
   skip_final_snapshot  = true
